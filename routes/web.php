@@ -30,6 +30,9 @@ Route::post('/similarity/scoring', 'customAlgorithmsController@scoring');
 Route::post('/similarity/compare', 'customAlgorithmsController@compareValue');
 
 Route::resource('products', 'ProductsController');
+
+Route::resource('transactions', 'TransactionsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

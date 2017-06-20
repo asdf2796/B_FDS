@@ -22,6 +22,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/similarity">Similarity Test</a></li>
+                <li><a href="/transactions">Transactions</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

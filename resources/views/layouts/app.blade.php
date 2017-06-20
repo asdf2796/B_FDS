@@ -14,16 +14,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    
     <div id="app">
-        @include('inc.navbar')
-        <div class="container">
+    @include('inc.navbar')
+        <div class="container" style="margin-top: 40px;">
             @include('inc.messages')
             @yield('content')
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>CKEDITOR.replace( 'article-ckeditor' );</script>
 </body>

@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Parameter;
+use DB;
 
 class customAlgorithmsController extends Controller
 {
 	public function scoring(Request $request) {
-		$factorPoints = [280,290,200,170,100,90];
+		$factorPoints = array();
+
+		$parameters = Parameter::get();
+		foreach ($parameters as $parameter) {
+			array_push($factorPoints, $parameter->value);
+		}
 
 		similar_text($request->input('memberAddress1'),$request->input('memberAddress2'),$memberAddressValue);
 		similar_text($request->input('shippingAddress1'),$request->input('shippingAddress2'),$shippingAddressValue);

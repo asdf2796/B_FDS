@@ -10,11 +10,11 @@ use DB;
 
 class ExcelController extends Controller
 {
-    public function getImport(){
+    public function getImport() {
       return view('import');
     }
 
-    public function postImport(){
+    public function postImport() {
       Excel::load(Input::file('transaction'),function($reader){
         $reader->select(array('name','mobile','member_address','shipping_address','user_id','kodetrx','member_email','order_email','payment_id','item','total_amount','discount','promo_code'))->each(function($sheet){
           Transaction::firstOrCreate($sheet->toArray());
@@ -24,7 +24,7 @@ class ExcelController extends Controller
       return redirect('/transactions');
     }
 
-    public function deleteAll(){
+    public function deleteAll() {
       DB::table('transactions')->truncate();
 
       $a = Transaction::count();

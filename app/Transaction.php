@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
   protected $fillable = [
-      'name', 'user_id', 'kodetrx', 'mobile', 'member_address', 'shipping_address', 'member_email', 'order_email', 'payment_id','total_amount','discount','promo_code','item','keterangan'
+      'name', 'user_id', 'kodetrx', 'mobile', 'member_address', 'shipping_address', 'member_email', 'order_email', 'payment_id', 'total_amount','discount','promo_code','item','keterangan'
   ];
 
-  public static function autoScoring($value1, $value2)
-	{
-    $factorPoints = [280,290,200,170,100,90];
+  public static function autoScoring($value1, $value2)	{
+    $factorPoints = array();
+
+		$parameters = Parameter::get();
+		foreach ($parameters as $parameter) {
+			array_push($factorPoints, $parameter->value);
+		}
 
     similar_text($value1->member_address,$value2->member_address,$memberAddressValue);
 		similar_text($value1->shipping_address,$value2->shipping_address,$shippingAddressValue);

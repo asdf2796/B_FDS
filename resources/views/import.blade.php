@@ -11,7 +11,7 @@
     {{csrf_field()}}
     <div class="form-group">
       <input class="form-control" type="file" name="transaction">
-      <input class="btn btn-default" type="submit" value="Import">
+      <input id="load" class="btn btn-default" type="submit" value="Import">
     </div>
   </form>
 </div>

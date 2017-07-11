@@ -34,3 +34,7 @@ Route::get('/import', 'ExcelController@getImport');
 Route::post('/postImport', 'ExcelController@postImport');
 
 Route::get('/transactions/delete_all', 'ExcelController@deleteAll');
+
+Route::get('/config', 'ParametersController@getParameters');
+
+Route::post ('/config/update', 'ParametersController@postUpdate');

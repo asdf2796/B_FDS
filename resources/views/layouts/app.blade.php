@@ -14,8 +14,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="overlay" class="text-center">
+      <i class="spinner fa fa-cog fa-spin fa-5x fa-fw" style="margin-top:150px;font-size:300px;"></i>
+      <p>Loading..</p>
+    </div>
+
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -24,14 +31,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#myPage">BHINNEKA - FDS</a>
+          <a class="navbar-brand" href="/">BHINNEKA - FDS</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">HOME</a></li>
+            <li><a href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>HOME</a></li>
             <li><a href="/compare">COMPARE</a></li>
             <li><a href="/import">IMPORT</a></li>
             <li><a href="/transactions">TRANSACTIONS</a></li>
+            <li><a href="/config" data-toggle="modal" data-target="#configModal"><i class="fa fa-cog fa-1x fa-fw"></i></a></li>
           </ul>
         </div>
       </div>
@@ -39,13 +47,21 @@
 
     @yield('content')
 
+    @include('inc.config')
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>CKEDITOR.replace( 'article-ckeditor' );</script>
-
-    <!-- Message Here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @include('inc.messages')
+    <script type="text/javascript">
+      var overlay = document.getElementById("overlay");
+
+      window.addEventListener('load', function(){
+      overlay.style.display = 'none';
+      });
+
+      $('#load').click(function(){
+        overlay.style.display = 'inline';
+      });
+    </script>
 </body>
 </html>

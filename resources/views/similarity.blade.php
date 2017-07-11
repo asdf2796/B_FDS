@@ -89,7 +89,7 @@
         </div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						{{Form::submit('Process', ['class' => 'btn btn-info btn-block'])}}
+						{{Form::submit('Process', ['class' => 'btn btn-info btn-block','id' => 'load'])}}
 					</div>
 				</div>
 	{!! Form::close() !!}

@@ -49,3 +49,21 @@ hr {
   text-align: left;
   padding-right: 1px !important;
 }
+
+
+.spinner{
+  color: #000;
+  opacity: 0.3;
+  margin: 0 auto;
+}
+
+#overlay{
+  z-index: 99;
+  height:100%;
+  width:100%;
+  background:#fff;
+  opacity: 0.9;
+  position:fixed;
+  left:0;
+  top:0;
+}

@@ -18,9 +18,9 @@
 				</select>
 			</div>
 			@endif
-			<a class="btn btn-success btn-md" href="/transactions/process" style="margin-top:20px;">Process</a>
-			<a class="btn btn-info btn-md" href="/transactions/download" style="margin-top:20px;">Export</a>
-			<a class="btn btn-danger btn-md" href="/transactions/delete_all" style="margin-top:20px;">Delete All</a>
+			<a id="load" class="btn btn-success btn-md" href="/transactions/process" style="margin-top:20px;">Process</a>
+			<a id="load" class="btn btn-info btn-md" href="/transactions/download" style="margin-top:20px;">Export</a>
+			<a id="load" class="btn btn-danger btn-md" href="/transactions/delete_all" style="margin-top:20px;">Delete All</a>
 		</div>
 		@endif
 	</div>

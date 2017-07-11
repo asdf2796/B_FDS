@@ -10,13 +10,7 @@ use App\Http\Controllers\customAlgorithmsController;
 
 class TransactionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function promoCodes()
-    {
+    public function promoCodes() {
       $promo_codes = DB::table('transactions')
                         ->select('promo_code')
                         ->where('promo_code','not like','BhinnekaPoin%')
@@ -26,8 +20,7 @@ class TransactionsController extends Controller
       return $promo_codes;
     }
 
-    public function index()
-    {
+    public function index() {
         $transactions = Transaction::whereNotNull('promo_code')
                             ->where('promo_code','not like','BhinnekaPoin%')
                             ->groupBy('user_id')
@@ -39,7 +32,7 @@ class TransactionsController extends Controller
         return view('transactions.index', compact(['transactions','promo_codes']));
     }
 
-    public function getProcess(){
+    public function getProcess() {
       $promo_codes = $this->promoCodes();
 
       foreach ($promo_codes as $promo_code) {
@@ -82,20 +75,14 @@ class TransactionsController extends Controller
       return redirect('/transactions');
     }
 
-    public function list($promo_code)
-    {
+    public function list($promo_code) {
         $transactions = Transaction::where('promo_code',$promo_code)->groupBy('kodetrx')->orderBy('user_id', 'ASC')->paginate(20);
         $promo_codes = $this->promoCodes();
 
         return view('transactions.index', compact(['transactions','promo_codes']));
     }
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getExcel()
-    {
+
+    public function getExcel() {
       $transactions = Transaction::select('id', 'name', 'user_id', 'kodetrx', 'mobile',
       'member_address', 'shipping_address', 'member_email', 'order_email', 'payment_id','item','total_amount','discount','promo_code','keterangan')->whereNotNull('keterangan')->get();
       Excel::create('transactions', function($excel) use($transactions) {
@@ -104,6 +91,4 @@ class TransactionsController extends Controller
         });
       })->export('xls');
     }
-
-
 }

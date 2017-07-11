@@ -12,21 +12,40 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
-    
-    <div id="app">
-    @include('inc.navbar')
-        <div class="container" style="margin-top: 40px;">
-            @include('inc.messages')
-            @yield('content')
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#myPage">BHINNEKA - FDS</a>
         </div>
-    </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/compare">COMPARE</a></li>
+            <li><a href="/import">IMPORT</a></li>
+            <li><a href="/transactions">TRANSACTIONS</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    @yield('content')
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>CKEDITOR.replace( 'article-ckeditor' );</script>
+
+    <!-- Message Here -->
+    @include('inc.messages')
 </body>
 </html>

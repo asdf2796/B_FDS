@@ -10,11 +10,7 @@ class PagesController extends Controller
     	return view('index');
     }
 
-     public function about() {
-    	return view('about');
-    }
-
-     public function contents() {
-    	return view('contents');
+    public function compare() {
+    	return view('similarity');
     }
 }

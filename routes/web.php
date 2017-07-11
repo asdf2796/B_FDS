@@ -13,15 +13,7 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::get('/about', 'PagesController@about');
-
-Route::get('/test', function(){
-	return view('test');
-});
-
-Route::get('/similarity', function(){
-	return view('similarity');
-});
+Route::get('/compare', 'PagesController@compare');
 
 Route::post('/similarity/check', 'customAlgorithmsController@calculateSimilarity');
 
@@ -29,10 +21,16 @@ Route::post('/similarity/scoring', 'customAlgorithmsController@scoring');
 
 Route::post('/similarity/compare', 'customAlgorithmsController@compareValue');
 
-Route::resource('products', 'ProductsController');
+Route::get('/transactions', 'TransactionsController@index');
 
-Route::resource('transactions', 'TransactionsController');
+Route::get('/transactions/promo/{promo_code}', 'TransactionsController@list');
 
-Auth::routes();
+Route::get('/transactions/download', 'TransactionsController@getExcel');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/transactions/process', 'TransactionsController@getProcess');
+
+Route::get('/import', 'ExcelController@getImport');
+
+Route::post('/postImport', 'ExcelController@postImport');
+
+Route::get('/transactions/delete_all', 'ExcelController@deleteAll');

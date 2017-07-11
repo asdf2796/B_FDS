@@ -1,0 +1,51 @@
+html,
+body {
+  background-color: #e1eff2;
+  padding-top: 25px;
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+}
+
+.modal, .modal-dialog, .modal-content {
+  z-index: 9999 !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+  background-color: #b3d8e0;
+  z-index: 10;
+  border: 0;
+  font-size: 14px !important;
+  line-height: 1em !important;
+  letter-spacing: 3px;
+  border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: #b3d8e0 !important;
+  background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #fff !important;
+}
+
+.jumbotron {
+  background-color: #e1eff2;
+}
+
+hr {
+  height:0;
+  border:0;
+  border-top:1px solid #5e6668;
+}
+
+.form-horizontal .control-label {
+  text-align: left;
+  padding-right: 1px !important;
+}

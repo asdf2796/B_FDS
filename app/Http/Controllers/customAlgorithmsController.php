@@ -7,54 +7,55 @@ use Illuminate\Http\Request;
 class customAlgorithmsController extends Controller
 {
 	public function scoring(Request $request) {
-		$this->validate($request, [
-            'memberAddress1' => 'required',
-            'memberAddress2' => 'required'
-        ]);
-		$factorPoints = [280,290,200,170,100,90,100];
+		$factorPoints = [280,290,200,170,100,90];
 
-        $memberAddressPoint = $factorPoints[0]*($this->calculateSimilarity($request->input('memberAddress1'),$request->input('memberAddress2'))/100);
-        $shippingAddressPoint = $factorPoints[1]*($this->calculateSimilarity($request->input('shippingAddress1'),$request->input('shippingAddress2'))/100);
-        $paymentIDPoint = $factorPoints[2]*($this->compareValue($request->input('paymentID1'),$request->input('paymentID2'))/100);
-        $mobilePoint = $factorPoints[3]*($this->calculateSimilarity($request->input('mobile1'),$request->input('mobile2'))/100);
-        $orderEmailPoint = $factorPoints[4]*($this->calculateSimilarity($request->input('oemail1'),$request->input('oemail2'))/100);
-        $memberEmailPoint = $factorPoints[5]*($this->calculateSimilarity($request->input('memail1'),$request->input('memail2'))/100);
-        $IPAddressPoint = $factorPoints[6]*($this->compareValue($request->input('ip1'),$request->input('ip2'))/100);
+		similar_text($request->input('memberAddress1'),$request->input('memberAddress2'),$memberAddressValue);
+		similar_text($request->input('shippingAddress1'),$request->input('shippingAddress2'),$shippingAddressValue);
+		$paymentIdValue = $this->compareValue($request->input('paymentID1'),$request->input('paymentID2'));
+		similar_text($request->input('mobile1'),$request->input('mobile2'),$mobileValue);
+		similar_text($request->input('memail1'),$request->input('memail2'),$memberEmailValue);
+		similar_text($request->input('oemail1'),$request->input('oemail2'),$orderEmailValue);
 
-        $totalPoints = round($memberAddressPoint+$shippingAddressPoint+$paymentIDPoint+$mobilePoint+$orderEmailPoint+$memberEmailPoint+$IPAddressPoint);
+    $memberAddressPoint = $factorPoints[0]*$memberAddressValue/100;
+    $shippingAddressPoint = $factorPoints[1]*$shippingAddressValue/100;
+    $paymentIDPoint = $factorPoints[2]*$paymentIdValue/100;
+    $mobilePoint = $factorPoints[3]*$mobileValue/100;
+    $orderEmailPoint = $factorPoints[4]*$orderEmailValue/100;
+    $memberEmailPoint = $factorPoints[5]*$memberEmailValue/100;
 
-        if ($totalPoints <= 400) {
-        	$hasil = 'Not Fraud';
-        } elseif ($totalPoints > 400 && $totalPoints <= 500) {
-        	$hasil = 'Need Concern';
-        } else {
-        	$hasil = 'fraud';
-        }
-        return redirect('/similarity')->with('success', 'Score = '.$totalPoints.' points, Category = '.$hasil);
+    $totalPoints = round($memberAddressPoint+$shippingAddressPoint+$paymentIDPoint+$mobilePoint+$orderEmailPoint+$memberEmailPoint);
+
+    if ($totalPoints <= 400) {
+    	$hasil = 'Not Fraud';
+    } elseif ($totalPoints > 400 && $totalPoints <= 500) {
+    	$hasil = 'Need Concern';
+    } else {
+    	$hasil = 'fraud';
+    }
+
+		$result = [$memberAddressValue, $shippingAddressValue, $paymentIdValue, $mobileValue, $memberEmailValue, $orderEmailValue, $totalPoints, $hasil];
+    return redirect('/compare')->with('success',
+		'Member Address Score = '.number_format($memberAddressValue).'%<br>
+		Shipping Address Score = '.number_format($shippingAddressValue).'%<br>
+		Payment ID Score = '.number_format($paymentIdValue).'%<br>
+		Mobile Score = '.number_format($mobileValue).'%<br>
+		Member E-mail Score = '.number_format($memberEmailValue).'%<br>
+		Order E-mail Score = '.number_format($orderEmailValue).'%<br><br>
+		<strong>Total Points = '.number_format($totalPoints).' points</strong><br>
+		Category = '.$hasil);
 	}
 
-    public function calculateSimilarity ($str1, $str2) {
-    	$str1len = strlen($str1);
-    	$str2len = strlen($str2);
-    	$lev = levenshtein($str1, $str2);
+  public function compareValue ($v1, $v2) {
+		if ($v1 == null && $v2 == null) {
+			$result = 0;
+		} else {
+			if ($v1 == $v2) {
+				$result = 100;
+			} else {
+				$result = 0;
+			}
+		}
 
-    	if($str1len < $str2len){    
-    		$pct = ($str1len - $lev) / $str1len;    
-    	} else {    
-    		$pct = ($str2len - $lev) / $str2len;    
-    	}   
-    	$pct = abs($pct * 100); 
-
-    	return $pct;
-    }
-
-    public function compareValue ($v1, $v2) {
-    	if ($v1 == $v2) {
-    		$result = 100;
-    	} else {
-    		$result = 0;
-    	}
-
-    	return $result;
-    }
+  	return $result;
+  }
 }

@@ -32,6 +32,42 @@ class TransactionsController extends Controller
         return view('transactions.index', compact(['transactions','promo_codes']));
     }
 
+    public function sortByName() {
+        $transactions = Transaction::whereNotNull('promo_code')
+                            ->where('promo_code','not like','BhinnekaPoin%')
+                            ->groupBy('user_id')
+                            ->orderBy('name', 'ASC')
+                            ->paginate(20);
+
+        $promo_codes = $this->promoCodes();
+
+        return view('transactions.index', compact(['transactions','promo_codes']));
+    }
+
+    public function sortByUserId() {
+        $transactions = Transaction::whereNotNull('promo_code')
+                            ->where('promo_code','not like','BhinnekaPoin%')
+                            ->groupBy('user_id')
+                            ->orderBy('user_id', 'ASC')
+                            ->paginate(20);
+
+        $promo_codes = $this->promoCodes();
+
+        return view('transactions.index', compact(['transactions','promo_codes']));
+    }
+
+    public function sortByPromoCode() {
+        $transactions = Transaction::whereNotNull('promo_code')
+                            ->where('promo_code','not like','BhinnekaPoin%')
+                            ->groupBy('user_id')
+                            ->orderBy('promo_code', 'ASC')
+                            ->paginate(20);
+
+        $promo_codes = $this->promoCodes();
+
+        return view('transactions.index', compact(['transactions','promo_codes']));
+    }
+
     public function getProcess() {
       $promo_codes = $this->promoCodes();
 

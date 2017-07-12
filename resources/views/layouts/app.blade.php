@@ -13,8 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -48,20 +52,8 @@
     @yield('content')
 
     @include('inc.config')
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     @include('inc.messages')
-    <script type="text/javascript">
-      var overlay = document.getElementById("overlay");
-
-      window.addEventListener('load', function(){
-      overlay.style.display = 'none';
-      });
-
-      $('#load').click(function(){
-        overlay.style.display = 'inline';
-      });
-    </script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>

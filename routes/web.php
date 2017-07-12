@@ -23,6 +23,12 @@ Route::post('/similarity/compare', 'customAlgorithmsController@compareValue');
 
 Route::get('/transactions', 'TransactionsController@index');
 
+Route::get('/transactions/sortBy/name', 'TransactionsController@sortByName');
+
+Route::get('/transactions/sortBy/userId', 'TransactionsController@sortByUserId');
+
+Route::get('/transactions/sortBy/promoCode', 'TransactionsController@sortByPromoCode');
+
 Route::get('/transactions/promo/{promo_code}', 'TransactionsController@list');
 
 Route::get('/transactions/download', 'TransactionsController@getExcel');

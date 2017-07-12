@@ -30,12 +30,33 @@
 				<tr style="background-color: #b3d8e0;">
 					<th>No</th>
 					<th>ID</th>
-					<th>User ID</th>
+					<th>
+						<a href="/transactions/sortBy/userId" style="color:#636B6F;">
+						<div class="row">
+							<div class="col-sm-9">User ID</div>
+							<div class="col-sm-2"><i class="fa fa-sort" aria-hidden="true"></i></div>
+						</div>
+						</a>
+					</th>
 					<th>Transaction Code</th>
-					<th>Name</th>
+					<th>
+						<a href="/transactions/sortBy/name" style="color:#636B6F;">
+						<div class="row">
+							<div class="col-sm-9">Name</div>
+							<div class="col-sm-2 text-right"><i class="fa fa-sort" aria-hidden="true"></i></div>
+						</div>
+						</a>
+					</th>
 					<th>Total Amount</th>
 					<th>Discount</th>
-					<th>Promo Code</th>
+					<th>
+						<a href="/transactions/sortBy/promoCode" style="color:#636B6F;">
+						<div class="row">
+							<div class="col-sm-9">Promo Code</div>
+							<div class="col-sm-2"><i class="fa fa-sort" aria-hidden="true"></i></div>
+						</div>
+						</a>
+					</th>
 					<th>Payment ID</th>
 					<th>Keterangan</th>
 				</tr>

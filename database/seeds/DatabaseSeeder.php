@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Parameter;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,13 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	// DB::table('products')->insert([
-    	// 		'name' => str_random(10),
-    	// 		'type' => str_random(10),
-    	// 		'qty'	=> random_int(1, 50),
-    	// 		'price'	=>	random_int(15, 100),
-    	// 	]);
-
-    	factory(App\Product::class, 20)->create();
+      $parameters = [
+        ['name' => 'Member Address','value' => '280',],
+        ['name' => 'Shipping Address','value' => '290',],
+        ['name' => 'Payment ID','value' => '200',],
+        ['name' => 'Mobile','value' => '170',],
+        ['name' => 'Member E-mail','value' => '90',],
+        ['name' => 'Order E-mail','value' => '100',]
+      ];
+      Parameter::insert($parameters);
     }
 }

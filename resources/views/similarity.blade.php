@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+FDS - Compare
+@endsection
+
 @section('content')
 <div class="container">
 	<h1>Check Similarity</h1>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+FDS - Import
+@endsection
+
 @section('content')
 <div class="container">
   <h1>Import Transaction</h1>

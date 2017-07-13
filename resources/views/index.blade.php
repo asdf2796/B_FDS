@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Bhinneka - FDS
+@endsection
+
 @section('content')
 <div class="container text-center">
 	<h1>BHINNEKA FRAUD DETECTION SYSTEM</h1>

@@ -23,7 +23,7 @@
 <body>
     <!-- Loading Screen -->
     <div id="overlay" class="text-center">
-      <i class="spinner fa fa-cog fa-spin fa-5x fa-fw" style="margin-top:150px;font-size:300px;"></i>
+      <i class="spinner fa fa-cog fa-spin fa-5x fa-fw" style="margin-top:15%;font-size:300px;"></i>
       <p>Loading..</p>
     </div>
 
